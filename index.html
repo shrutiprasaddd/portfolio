@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shruti Prasad Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F6EFE6;
+color:#3B010B;
+overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 60px;
+display:flex;
+justify-content:space-between;
+background:#F6EFE6;
+z-index:1000;
+border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+nav a{
+text-decoration:none;
+color:#75162D;
+margin-left:25px;
+font-weight:500;
+cursor:pointer;
+}
+
+nav a:hover{
+opacity:0.6;
+}
+
+/* HERO WRAPPER */
+.hero-wrapper{
+display:flex;
+position:relative;
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+width:100%;
+background:linear-gradient(135deg,#75162D,#560B18);
+color:#F6EFE6;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:120px 20px;
+transition:0.6s ease;
+}
+
+.hero.shrink{
+width:50%;
+}
+
+.hero h1{
+font-size:70px;
+font-family:'Playfair Display';
+}
+
+.hero img{
+width:250px;
+border-radius:20px;
+margin:25px 0;
+}
+
+.badge{
+background:#F6EFE6;
+color:#3B010B;
+padding:6px 15px;
+border-radius:20px;
+margin-top:15px;
+margin-bottom:10px;
+}
+
+.hero p{
+max-width:600px;
+margin-top:18px;
+line-height:1.6;
+}
+
+/* ABOUT PANEL */
+.about-panel{
+position:absolute;
+top:0;
+right:0;
+width:0;
+height:100%;
+background:url('photo1.png') center/cover no-repeat;
+overflow:hidden;
+transition:0.6s ease;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.about-panel.show{
+width:50%;
+}
+
+.about-panel::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(8px);
+}
+
+.about-content{
+position:relative;
+color:white;
+max-width:500px;
+padding:40px;
+}
+
+.about-text{
+line-height:1.8;
+font-size:16px;
+max-width:520px;
+}
+
+.about-text br{
+display:block;
+margin-bottom:10px;
+}
+
+/* SECTION */
+.section{
+padding:100px 60px;
+}
+
+h2{
+font-family:'Playfair Display';
+margin-bottom:30px;
+font-size:36px;
+}
+
+/* PROJECTS */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.project-card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+transition:0.4s;
+}
+
+.project-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+transition:0.4s;
+}
+
+.project-card:hover img{
+transform:scale(1.05);
+}
+
+.project-content{
+padding:20px;
+}
+
+.project-card:hover{
+transform:translateY(-12px) scale(1.02);
+box-shadow:0 25px 50px rgba(0,0,0,0.15);
+}
+
+.tech span{
+background:#560B18;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+margin:3px;
+display:inline-block;
+}
+
+.project-links{
+margin-top:12px;
+}
+
+.project-links a{
+color:#75162D;
+text-decoration:underline;
+margin-right:8px;
+}
+
+.project-links a:hover{
+opacity:0.6;
+}
+
+/* INFO */
+.info-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:30px;
+}
+
+.info-box{
+background:white;
+padding:30px;
+border-radius:20px;
+transition:0.3s;
+}
+
+.info-box:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* EXPERIENCE */
+.exp{
+margin-bottom:30px;
+background:white;
+padding:25px;
+border-radius:15px;
+border-left:4px solid #75162D;
+transition:0.3s;
+}
+
+.exp:hover{
+transform:translateX(10px);
+box-shadow:0 15px 30px rgba(0,0,0,0.1);
+}
+
+.exp small{
+color:#777;
+}
+
+/* CONTACT */
+.contact{
+text-align:center;
+}
+
+.contact a{
+margin:10px;
+color:#560B18;
+text-decoration:none;
+}
+
+.contact a:hover{
+opacity:0.6;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+.hero.shrink{width:100%;}
+.about-panel.show{width:100%;}
+.info-grid{grid-template-columns:1fr;}
+.hero h1{font-size:50px;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div><b>Welcome to my portfolio &lt;3</b></div>
+<div>
+<a onclick="toggleAbout()">About Me</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="resume.pdf" target="_blank">Resume</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<div class="hero-wrapper">
+
+<section class="hero" id="hero">
+<h1>Shruti Prasad</h1>
+<img src="photo2.png">
+<div class="badge">Open to work !</div>
+<p>I design and build modern web experiences that are visually engaging and intuitive.</p>
+</section>
+
+<div class="about-panel" id="aboutPanel">
+<div class="about-content">
+<h2>About Me</h2>
+<p class="about-text">
+I’m a final-year B.Tech Computer Science student with a CGPA of 8.6 (till the 6th semester), with a growing interest in web development and artificial intelligence. 
+I enjoy building things that are not just functional, but also intuitive and visually engaging.
+
+<br><br>
+
+Academically, I’ve been consistent, scoring 93.4% in high school and 94.8% in senior secondary, which reflects my discipline and commitment. 
+Alongside this, I’ve been exploring modern tech stacks through hands-on projects, trying to understand not just how things work, but how they can be improved. 
+
+<br><br>
+
+I’m someone who genuinely enjoys learning — whether it’s picking up a new technology or refining something I’ve already built. 
+I’m looking forward to contributing meaningfully in a professional environment and growing into someone who can create real impact over time.
+</p>
+</div>
+</div>
+
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+<h2>Projects</h2>
+
+<div class="projects">
+
+<div class="project-card">
+<img src="ai.png">
+<div class="project-content">
+<h3>AI Resume Analyzer</h3>
+<p>AI-powered resume analysis tool providing actionable insights using OpenAI APIs.</p>
+<div class="tech"><span>React</span><span>Node</span><span>OpenAI</span></div>
+
+<div class="project-links">
+<a href="https://ai-resume-analyzer-qyi6.onrender.com" target="_blank">Live</a> |
+<a href="https://github.com/shrutiprasaddd/ai-resume-analyzer" target="_blank">Code</a>
+</div>
+</div>
+</div>
+
+<div class="project-card">
+<img src="bot.png">
+<div class="project-content">
+<h3>WhatsApp Bot</h3>
+<p>Automated chatbot enabling seamless food ordering via WhatsApp APIs.</p>
+<div class="tech"><span>Node</span><span>Express</span><span>n8n</span></div>
+
+<div class="project-links">
+<a href="https://github.com/shrutiprasaddd/whatsapp-food-ordering-bot" target="_blank">Code</a>
+</div>
+</div>
+</div>
+
+<div class="project-card">
+<img src="simon.png">
+<div class="project-content">
+<h3>Simon Says Game</h3>
+<p>Interactive browser-based memory game using dynamic JavaScript logic.</p>
+<div class="tech"><span>JS</span><span>HTML</span><span>CSS</span></div>
+
+<div class="project-links">
+<a href="https://shrutiprasaddd.github.io/SimonSaysGame/" target="_blank">Live</a> |
+<a href="https://github.com/shrutiprasaddd/SimonSaysGame" target="_blank">Code</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+<div class="info-grid">
+
+<div class="info-box">
+<h3>Skills</h3>
+<p>
+<strong>Languages:</strong> Java, HTML, CSS, JavaScript<br><br>
+<strong>Frameworks:</strong> React, Express, Node.js<br><br>
+<strong>Database:</strong> MongoDB, MySQL<br><br>
+<strong>Tools:</strong> Git, GitHub, VS Code, n8n
+</p>
+</div>
+
+<div class="info-box">
+<h3>What Sets Me Apart</h3>
+<p>
+Strong problem-solving mindset<br>
+UI/UX focused development<br>
+Hands-on real-world projects<br>
+Quick learner & adaptable<br>
+Understanding of system design basics
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section">
+<h2>Experience</h2>
+
+<div class="exp">
+<h4>Software Developer Intern — Alienhouse Networks</h4>
+<small>Mar 2026 – Present | Remote</small>
+<p>
+Working on backend systems, cloud workflows, deployment, debugging, and performance optimization.
+</p>
+</div>
+
+<div class="exp">
+<h4>Frontend Developer Intern — Alienhouse Networks</h4>
+<small>Apr 2025 – Sep 2025 | Remote</small>
+<p>
+Developed responsive UI, collaborated with backend teams, and improved usability and performance.
+</p>
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+<h2>Contact</h2>
+<a href="mailto:shruti141203@gmail.com">Email</a>
+<a href="https://github.com/shrutiprasaddd" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/shruti-prasad-010a32252" target="_blank">LinkedIn</a>
+</section>
+
+<script>
+function toggleAbout(){
+
+// scroll to top first
+window.scrollTo({
+top: 0,
+behavior: "smooth"
+});
+
+// delay so animation feels smooth
+setTimeout(()=>{
+document.getElementById('hero').classList.toggle('shrink');
+document.getElementById('aboutPanel').classList.toggle('show');
+}, 400);
+
+}
+
+// click outside close
+document.addEventListener('click', function(e){
+const panel = document.getElementById('aboutPanel');
+const hero = document.getElementById('hero');
+
+if(panel.classList.contains('show')){
+if(!panel.contains(e.target) && !e.target.closest('nav a')){
+panel.classList.remove('show');
+hero.classList.remove('shrink');
+}
+}
+});
+</script>
+
+</body>
+</html>
